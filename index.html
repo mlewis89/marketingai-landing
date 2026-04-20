@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MarketingAI — Automated marketing for Australian small businesses</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --grey-light: #f7f7f7;
+      --grey-mid: #888;
+      --accent: #0f7aff;
+      --accent-dark: #0060cc;
+      --text: #1a1a1a;
+      --subtext: #555;
+      --border: #e2e2e2;
+      --radius: 8px;
+      --max-w: 700px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo { font-weight: 800; font-size: 1.1rem; color: var(--black); text-decoration: none; letter-spacing: -0.3px; }
+    .nav-badge {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px;
+      background: var(--accent); color: var(--white);
+      padding: 4px 10px; border-radius: 20px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 24px 72px;
+      text-align: center;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      font-weight: 800; letter-spacing: -1px; line-height: 1.1;
+      margin-bottom: 22px;
+    }
+    .subheadline {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: var(--subtext); margin-bottom: 40px;
+    }
+
+    /* ── BUTTONS ── */
+    .cta-group {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 15px 28px;
+      background: var(--accent); color: var(--white);
+      border: none; border-radius: var(--radius);
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-secondary {
+      display: inline-block;
+      padding: 15px 28px;
+      background: transparent; color: var(--text);
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      font-size: 1rem; font-weight: 600; cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--text); }
+    .btn-secondary.disabled {
+      opacity: 0.45; cursor: not-allowed; pointer-events: none;
+    }
+    .cta-note { font-size: 0.78rem; color: var(--grey-mid); }
+
+    /* ── SECTION SHARED ── */
+    .section { padding: 72px 24px; }
+    .section-inner { max-width: var(--max-w); margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 800; letter-spacing: -0.5px; margin-bottom: 40px;
+    }
+
+    /* ── PROBLEM ── */
+    .problems-bg { background: var(--grey-light); }
+    .problem-list { display: flex; flex-direction: column; gap: 20px; }
+    .problem-item {
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      background: var(--white);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .problem-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .problem-item p { font-size: 0.9rem; color: var(--subtext); }
+
+    /* ── SOLUTION ── */
+    .solution-grid { display: flex; flex-direction: column; gap: 28px; }
+    .solution-card {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 22px;
+    }
+    .solution-tag {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .solution-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .solution-card p { font-size: 0.9rem; color: var(--subtext); }
+
+    /* ── OFFER BOX ── */
+    .offer-bg { background: var(--black); color: var(--white); }
+    .offer-box {
+      border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 36px 32px;
+      max-width: 560px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .price-tag {
+      font-size: 3.2rem; font-weight: 800;
+      letter-spacing: -2px; margin-bottom: 4px;
+    }
+    .price-sub { font-size: 0.9rem; color: #aaa; margin-bottom: 28px; }
+    .include-list {
+      text-align: left; list-style: none;
+      margin-bottom: 28px;
+    }
+    .include-list li {
+      font-size: 0.92rem; padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .include-list li:last-child { border-bottom: none; }
+    .include-list li::before {
+      content: "✓"; color: var(--accent);
+      font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+    .no-lock { font-size: 0.78rem; color: #888; margin-top: 16px; }
+    .offer-cta-group {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .offer-cta-group .btn-primary { font-size: 1rem; padding: 15px 30px; }
+    .offer-cta-group .btn-secondary {
+      border-color: rgba(255,255,255,0.25); color: var(--white);
+    }
+    .offer-cta-group .btn-secondary:hover { border-color: var(--white); }
+
+    /* ── SOCIAL PROOF ── */
+    .proof-bg { background: var(--grey-light); }
+    .proof-inner { text-align: center; max-width: 500px; margin: 0 auto; }
+    .proof-badge {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase;
+      background: #fff3cd; color: #856404;
+      border: 1px solid #ffc107;
+      padding: 5px 14px; border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .proof-inner h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; }
+    .proof-inner p { font-size: 0.95rem; color: var(--subtext); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--grey-light);
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.75rem; color: var(--grey-mid);
+      max-width: 640px; margin: 0 auto 6px;
+      line-height: 1.55;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      h1 { font-size: 1.75rem; }
+      .cta-group, .offer-cta-group { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary { text-align: center; }
+      .offer-box { padding: 28px 20px; }
+      .price-tag { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="#">MarketingAI</a>
+    <span class="nav-badge">Australia</span>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">Automated marketing for Australian businesses</p>
+    <h1>Stop losing customers to businesses that show up. You don't.</h1>
+    <p class="subheadline">
+      Most Australian small businesses have a great product and a forgettable online presence.
+      MarketingAI sets up an automated system that finds, attracts, and nurtures your customers —
+      without you managing it day to day.
+    </p>
+    <div class="cta-group">
+      <a href="https://calendly.com/mark-neutrino/30min" class="btn-primary" target="_blank" rel="noopener">
+        Book a free 30-min call
+      </a>
+      <a href="#offer" class="btn-secondary">See the $149 offer</a>
+    </div>
+    <p class="cta-note">No obligation. No sales pitch. Just an honest conversation about your marketing.</p>
+  </div>
+
+  <!-- PROBLEM SECTION -->
+  <section class="section problems-bg">
+    <div class="section-inner">
+      <p class="section-label">The problem</p>
+      <h2 class="section-title">Why most AU small business marketing doesn't work</h2>
+      <div class="problem-list">
+        <div class="problem-item">
+          <h3>You're invisible where your customers are looking</h3>
+          <p>
+            Your competitors show up on LinkedIn, in Google, and in people's inboxes.
+            You're relying on referrals and word of mouth — which works until it doesn't.
+          </p>
+        </div>
+        <div class="problem-item">
+          <h3>Agencies charge $2,000–$5,000/month and can't explain what you got</h3>
+          <p>
+            Monthly retainers with vague deliverables. You pay for "strategy", get some social posts,
+            and wonder if any of it is actually bringing in customers.
+          </p>
+        </div>
+        <div class="problem-item">
+          <h3>You don't have time to market yourself — you're running the business</h3>
+          <p>
+            Marketing keeps getting pushed back. When you finally get around to it,
+            you're starting from scratch every time, with no system underneath it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION SECTION -->
+  <section class="section">
+    <div class="section-inner">
+      <p class="section-label">How it works</p>
+      <h2 class="section-title">Three systems. Set up once. Working for you every day.</h2>
+      <div class="solution-grid">
+        <div class="solution-card">
+          <p class="solution-tag">System 1</p>
+          <h3>AI Funnel Machine</h3>
+          <p>
+            A lead capture and nurture system that turns website visitors and social followers into contacts
+            you can actually talk to. AI-assisted copy, automated follow-up, and clear conversion tracking —
+            all set up for your specific business and audience.
+          </p>
+        </div>
+        <div class="solution-card">
+          <p class="solution-tag">System 2</p>
+          <h3>Outbound Engine</h3>
+          <p>
+            Structured, personalised outreach to the right people — not mass spam. A targeted sequence
+            that identifies your ideal customers, crafts relevant messages, and follows up automatically
+            so you stay top of mind without lifting a finger.
+          </p>
+        </div>
+        <div class="solution-card">
+          <p class="solution-tag">System 3</p>
+          <h3>Creative Goldmine</h3>
+          <p>
+            A repeatable system for turning what you already know into content that builds authority and
+            drives inbound interest. We set up the framework — you get a library of content assets that
+            work for you 24/7, without needing to be a writer or content strategist.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFER BOX -->
+  <section class="section offer-bg" id="offer">
+    <div class="section-inner">
+      <div class="offer-box">
+        <p style="font-size:0.75rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6bb3ff; margin-bottom:14px;">One-off setup fee</p>
+        <div class="price-tag">$149 <span style="font-size:1.4rem; font-weight:600; letter-spacing:0px;">AUD</span></div>
+        <p class="price-sub">One-time. No ongoing fees. No lock-in.</p>
+        <ul class="include-list">
+          <li>Full setup of all three systems (AI Funnel Machine, Outbound Engine, Creative Goldmine) configured for your business</li>
+          <li>30-minute onboarding call to brief us on your customers, offer, and goals</li>
+          <li>Custom templates and automation flows — ready to run</li>
+          <li>Walkthrough of how to operate and iterate each system</li>
+          <li>30 days of follow-up support via email</li>
+        </ul>
+        <p class="no-lock">
+          No monthly retainer. No minimum term. Pay once, own the setup.
+          If it's not the right fit after the call, you don't pay.
+        </p>
+        <div class="offer-cta-group">
+          <a href="https://calendly.com/mark-neutrino/30min" class="btn-primary" target="_blank" rel="noopener">
+            Book the free call first
+          </a>
+          <!-- STRIPE_LINK_PLACEHOLDER: replace href with Stripe payment link once NMA-37 is complete -->
+          <a href="#" class="btn-secondary disabled" id="buy-now-btn" aria-disabled="true">
+            Buy now — coming soon
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF PLACEHOLDER -->
+  <section class="section proof-bg">
+    <div class="section-inner">
+      <div class="proof-inner">
+        <span class="proof-badge">Early access open</span>
+        <h2>Results incoming — be our first client</h2>
+        <p>
+          We launched MarketingAI to prove the model works before charging more.
+          The $149 setup fee is deliberately low — because we want case studies, not just customers.
+          If you're in early, you get our full attention.
+        </p>
+        <div style="margin-top:32px;">
+          <a href="https://calendly.com/mark-neutrino/30min" class="btn-primary" target="_blank" rel="noopener">
+            Book a free 30-min call
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      <strong>Important:</strong> Outcomes described on this page are illustrative only.
+      MarketingAI does not guarantee specific marketing results, revenue outcomes, or timelines.
+      Marketing system performance depends on your industry, offer, and audience.
+      All work is performed by a sole trader operating under Australian Consumer Law.
+    </p>
+    <p style="margin-top:6px;">© 2026 MarketingAI · Australia · <a href="https://calendly.com/mark-neutrino/30min" style="color:var(--grey-mid);">Book a call</a></p>
+  </footer>
+
+</body>
+</html>
