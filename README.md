@@ -18,7 +18,7 @@ GitHub Pages — auto-deploys within ~60s of any push to `main`.
 |-----------|--------|--------|
 | GitHub repo | ✅ Live | https://github.com/mlewis89/marketingai-landing |
 | GitHub Pages | ✅ Live | https://mlewis89.github.io/marketingai-landing/ |
-| Calendly CTA | ✅ Active | https://calendly.com/mark-neutrino/30min |
+| Calendly CTA | ✅ Secondary | https://calendly.com/mark-neutrino/30min (secondary CTA only — Stripe is primary) |
 | Stripe payment link | ✅ Live | https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00 |
 
 ---
