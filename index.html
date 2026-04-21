@@ -202,6 +202,35 @@
       line-height: 1.55;
     }
 
+    /* ── EMAIL CAPTURE ── */
+    .capture-bg { background: var(--accent); }
+    .capture-inner { text-align: center; max-width: 500px; margin: 0 auto; }
+    .capture-inner h2 { font-size: 1.6rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+    .capture-inner p { font-size: 0.95rem; color: rgba(255,255,255,0.85); margin-bottom: 28px; }
+    .capture-form {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+    }
+    .capture-form input[type="email"] {
+      flex: 1 1 220px;
+      padding: 14px 18px;
+      border: none; border-radius: var(--radius);
+      font-size: 1rem; outline: none;
+      min-width: 0;
+    }
+    .capture-form input[type="email"]::placeholder { color: #999; }
+    .btn-capture {
+      padding: 14px 26px;
+      background: var(--black); color: var(--white);
+      border: none; border-radius: var(--radius);
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-capture:hover { background: #222; }
+    .capture-consent {
+      font-size: 0.72rem; color: rgba(255,255,255,0.65);
+      margin-top: 14px; line-height: 1.5;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 480px) {
       h1 { font-size: 1.75rem; }
@@ -233,7 +262,7 @@
       <a href="https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00" class="btn-primary" target="_blank" rel="noopener">
         Get started — $149 AUD
       </a>
-      <a href="https://calendly.com/mark-neutrino/30min" class="btn-secondary" target="_blank" rel="noopener">Book a free call first</a>
+      <a href="https://calendly.com/getmarketingai/30min" class="btn-secondary" target="_blank" rel="noopener">Book a free call first</a>
     </div>
     <p class="cta-note">One-time fee. No retainer. No lock-in.</p>
   </div>
@@ -277,29 +306,28 @@
       <div class="solution-grid">
         <div class="solution-card">
           <p class="solution-tag">System 1</p>
-          <h3>AI Funnel Machine</h3>
+          <h3>AI Content Engine</h3>
           <p>
-            A lead capture and nurture system that turns website visitors and social followers into contacts
-            you can actually talk to. AI-assisted copy, automated follow-up, and clear conversion tracking —
-            all set up for your specific business and audience.
+            A 30-day LinkedIn content calendar built to your voice and your audience — 10 posts drafted
+            around your specific offer and ideal client, across 4 content themes drawn from your business pain points and expertise. Copy-paste ready, no blank page, no guessing what to write.
           </p>
         </div>
         <div class="solution-card">
           <p class="solution-tag">System 2</p>
-          <h3>Outbound Engine</h3>
+          <h3>Outbound Lead Sequence</h3>
           <p>
-            Structured, personalised outreach to the right people — not mass spam. A targeted sequence
-            that identifies your ideal customers, crafts relevant messages, and follows up automatically
-            so you stay top of mind without lifting a finger.
+            A LinkedIn outreach system designed to start conversations, not spam — a personalised
+            connection request template in your own words and tone, a 2-message DM follow-up sequence,
+            and a specific target profile so you know exactly who to reach out to and why.
           </p>
         </div>
         <div class="solution-card">
           <p class="solution-tag">System 3</p>
-          <h3>Creative Goldmine</h3>
+          <h3>Email Nurture Sequence</h3>
           <p>
-            A repeatable system for turning what you already know into content that builds authority and
-            drives inbound interest. We set up the framework — you get a library of content assets that
-            work for you 24/7, without needing to be a writer or content strategist.
+            A 3-email sequence that keeps warm leads warm — an intro email that establishes credibility,
+            a value email that builds trust, and a CTA email that invites a conversation without pressure.
+            Formatted and ready to load into your existing email tool.
           </p>
         </div>
       </div>
@@ -314,11 +342,10 @@
         <div class="price-tag">$149 <span style="font-size:1.4rem; font-weight:600; letter-spacing:0px;">AUD</span></div>
         <p class="price-sub">One-time. No ongoing fees. No lock-in.</p>
         <ul class="include-list">
-          <li>Full setup of all three systems (AI Funnel Machine, Outbound Engine, Creative Goldmine) configured for your business</li>
-          <li>30-minute onboarding call to brief us on your customers, offer, and goals</li>
-          <li>Custom templates and automation flows — ready to run</li>
-          <li>Walkthrough of how to operate and iterate each system</li>
-          <li>30 days of follow-up support via email</li>
+          <li>All three systems configured for your business: AI Content Engine, Outbound Lead Sequence, and Email Nurture Sequence</li>
+          <li>45-minute discovery call to brief us on your offer, audience, and goals</li>
+          <li>All deliverables drafted and formatted, ready to use — within 3–5 business days</li>
+          <li>1 revision round on any deliverable within 7 days of delivery</li>
         </ul>
         <p class="no-lock">
           No monthly retainer. No minimum term. Pay once, own the setup.
@@ -328,10 +355,38 @@
           <a href="https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00" class="btn-primary" id="buy-now-btn" target="_blank" rel="noopener">
             Get started — $149 AUD
           </a>
-          <a href="https://calendly.com/mark-neutrino/30min" class="btn-secondary" target="_blank" rel="noopener">
+          <a href="https://calendly.com/getmarketingai/30min" class="btn-secondary" target="_blank" rel="noopener">
             Book a free call first
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL CAPTURE -->
+  <!-- MAILCHIMP_EMBED: Replace the form below with your Mailchimp embedded form code once account is created.
+       Mailchimp account: getmarketingai@gmail.com | List: MarketingAI Early Access
+       Keep consent language (bottom paragraph) in all replacements.
+       This section is for OPTED-IN subscribers only — Australian Spam Act 2003 compliance. -->
+  <section class="section capture-bg">
+    <div class="section-inner">
+      <div class="capture-inner">
+        <h2>Get early access updates</h2>
+        <p>We're onboarding our first clients now. Join the list and we'll let you know when spots open.</p>
+        <!-- BEGIN MAILCHIMP FORM PLACEHOLDER -->
+        <form class="capture-form" action="MAILCHIMP_ACTION_URL_HERE" method="post" target="_blank" novalidate>
+          <input type="email" name="EMAIL" placeholder="Your email address" required autocomplete="email" />
+          <!-- ANTI-BOT: Do not remove this field -->
+          <div style="position:absolute;left:-5000px;" aria-hidden="true">
+            <input type="text" name="b_MAILCHIMP_PLACEHOLDER" tabindex="-1" value="" />
+          </div>
+          <button type="submit" class="btn-capture">Get early access</button>
+        </form>
+        <!-- END MAILCHIMP FORM PLACEHOLDER -->
+        <p class="capture-consent">
+          By signing up you agree to receive occasional updates from MarketingAI.
+          No spam. Unsubscribe anytime. Your details are never shared.
+        </p>
       </div>
     </div>
   </section>
