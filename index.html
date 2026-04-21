@@ -202,6 +202,35 @@
       line-height: 1.55;
     }
 
+    /* ── EMAIL CAPTURE ── */
+    .capture-bg { background: var(--accent); }
+    .capture-inner { text-align: center; max-width: 500px; margin: 0 auto; }
+    .capture-inner h2 { font-size: 1.6rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+    .capture-inner p { font-size: 0.95rem; color: rgba(255,255,255,0.85); margin-bottom: 28px; }
+    .capture-form {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+    }
+    .capture-form input[type="email"] {
+      flex: 1 1 220px;
+      padding: 14px 18px;
+      border: none; border-radius: var(--radius);
+      font-size: 1rem; outline: none;
+      min-width: 0;
+    }
+    .capture-form input[type="email"]::placeholder { color: #999; }
+    .btn-capture {
+      padding: 14px 26px;
+      background: var(--black); color: var(--white);
+      border: none; border-radius: var(--radius);
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-capture:hover { background: #222; }
+    .capture-consent {
+      font-size: 0.72rem; color: rgba(255,255,255,0.65);
+      margin-top: 14px; line-height: 1.5;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 480px) {
       h1 { font-size: 1.75rem; }
@@ -233,7 +262,7 @@
       <a href="https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00" class="btn-primary" target="_blank" rel="noopener">
         Get started — $149 AUD
       </a>
-      <a href="https://calendly.com/mark-neutrino/30min" class="btn-secondary" target="_blank" rel="noopener">Book a free call first</a>
+      <a href="https://calendly.com/getmarketingai/30min" class="btn-secondary" target="_blank" rel="noopener">Book a free call first</a>
     </div>
     <p class="cta-note">One-time fee. No retainer. No lock-in.</p>
   </div>
@@ -326,10 +355,38 @@
           <a href="https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00" class="btn-primary" id="buy-now-btn" target="_blank" rel="noopener">
             Get started — $149 AUD
           </a>
-          <a href="https://calendly.com/mark-neutrino/30min" class="btn-secondary" target="_blank" rel="noopener">
+          <a href="https://calendly.com/getmarketingai/30min" class="btn-secondary" target="_blank" rel="noopener">
             Book a free call first
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL CAPTURE -->
+  <!-- MAILCHIMP_EMBED: Replace the form below with your Mailchimp embedded form code once account is created.
+       Mailchimp account: getmarketingai@gmail.com | List: MarketingAI Early Access
+       Keep consent language (bottom paragraph) in all replacements.
+       This section is for OPTED-IN subscribers only — Australian Spam Act 2003 compliance. -->
+  <section class="section capture-bg">
+    <div class="section-inner">
+      <div class="capture-inner">
+        <h2>Get early access updates</h2>
+        <p>We're onboarding our first clients now. Join the list and we'll let you know when spots open.</p>
+        <!-- BEGIN MAILCHIMP FORM PLACEHOLDER -->
+        <form class="capture-form" action="MAILCHIMP_ACTION_URL_HERE" method="post" target="_blank" novalidate>
+          <input type="email" name="EMAIL" placeholder="Your email address" required autocomplete="email" />
+          <!-- ANTI-BOT: Do not remove this field -->
+          <div style="position:absolute;left:-5000px;" aria-hidden="true">
+            <input type="text" name="b_MAILCHIMP_PLACEHOLDER" tabindex="-1" value="" />
+          </div>
+          <button type="submit" class="btn-capture">Get early access</button>
+        </form>
+        <!-- END MAILCHIMP FORM PLACEHOLDER -->
+        <p class="capture-consent">
+          By signing up you agree to receive occasional updates from MarketingAI.
+          No spam. Unsubscribe anytime. Your details are never shared.
+        </p>
       </div>
     </div>
   </section>
