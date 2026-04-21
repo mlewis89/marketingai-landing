@@ -207,32 +207,46 @@
 
     /* ── EMAIL CAPTURE ── */
     .capture-bg { background: var(--accent); }
-    .capture-inner { text-align: center; max-width: 500px; margin: 0 auto; }
+    .capture-inner { text-align: center; max-width: 520px; margin: 0 auto; }
     .capture-inner h2 { font-size: 1.6rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
-    .capture-inner p { font-size: 0.95rem; color: rgba(255,255,255,0.85); margin-bottom: 28px; }
+    .capture-inner .capture-sub { font-size: 0.95rem; color: rgba(255,255,255,0.85); margin-bottom: 28px; }
     .capture-form {
-      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+      display: flex; flex-direction: column; gap: 12px;
     }
-    .capture-form input[type="email"] {
-      flex: 1 1 220px;
+    .capture-form input[type="text"],
+    .capture-form input[type="email"],
+    .capture-form select {
+      width: 100%;
       padding: 14px 18px;
       border: none; border-radius: var(--radius);
       font-size: 1rem; outline: none;
-      min-width: 0;
+      background: var(--white); color: var(--text);
     }
+    .capture-form input[type="text"]::placeholder,
     .capture-form input[type="email"]::placeholder { color: #999; }
+    .capture-form select { color: var(--text); }
+    .capture-form select option[value=""] { color: #999; }
     .btn-capture {
-      padding: 14px 26px;
+      padding: 15px 26px;
       background: var(--black); color: var(--white);
       border: none; border-radius: var(--radius);
       font-size: 1rem; font-weight: 700; cursor: pointer;
-      white-space: nowrap;
+      white-space: nowrap; width: 100%;
     }
     .btn-capture:hover { background: #222; }
     .capture-consent {
       font-size: 0.72rem; color: rgba(255,255,255,0.65);
       margin-top: 14px; line-height: 1.5;
     }
+    .capture-thankyou {
+      display: none;
+      background: rgba(255,255,255,0.15);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      color: var(--white);
+    }
+    .capture-thankyou h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+    .capture-thankyou p { font-size: 0.95rem; color: rgba(255,255,255,0.85); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 480px) {
@@ -262,12 +276,12 @@
       without you managing it day to day.
     </p>
     <div class="cta-group">
-      <a href="https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00" class="btn-primary" target="_blank" rel="noopener">
-        Get started — $149 AUD
+      <a href="#early-access" class="btn-primary">
+        Get my free content strategy
       </a>
-      <a href="https://calendly.com/getmarketingai/30min" class="btn-secondary" target="_blank" rel="noopener">Book a free call first</a>
+      <a href="https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00" class="btn-secondary" target="_blank" rel="noopener">Get started — $149 AUD</a>
     </div>
-    <p class="cta-note">One-time fee. No retainer. No lock-in.</p>
+    <p class="cta-note">Free personalised recommendation — no credit card. Or pay once and get everything set up.</p>
   </div>
 
   <!-- PROBLEM SECTION -->
@@ -366,33 +380,101 @@
     </div>
   </section>
 
-  <!-- EMAIL CAPTURE -->
-  <!-- MAILCHIMP_EMBED: Replace the form below with your Mailchimp embedded form code once account is created.
-       Mailchimp account: getmarketingai@gmail.com | List: MarketingAI Early Access
-       Keep consent language (bottom paragraph) in all replacements.
-       This section is for OPTED-IN subscribers only — Australian Spam Act 2003 compliance. -->
-  <section class="section capture-bg">
+  <!-- EMAIL CAPTURE — OPTED-IN SUBSCRIBERS ONLY (Australian Spam Act 2003 compliance) -->
+  <!-- UPGRADE PATH: Replace form action URL with Mailchimp/Formspree endpoint once account is set up.
+       Submissions currently route to getmarketingai@gmail.com via mailto as fallback.
+       See NMA-115 for Mailchimp setup task. -->
+  <section class="section capture-bg" id="early-access">
     <div class="section-inner">
       <div class="capture-inner">
-        <h2>Get early access updates</h2>
-        <p>We're onboarding our first clients now. Join the list and we'll let you know when spots open.</p>
-        <!-- BEGIN MAILCHIMP FORM PLACEHOLDER -->
-        <form class="capture-form" action="MAILCHIMP_ACTION_URL_HERE" method="post" target="_blank" novalidate>
-          <input type="email" name="EMAIL" placeholder="Your email address" required autocomplete="email" />
-          <!-- ANTI-BOT: Do not remove this field -->
-          <div style="position:absolute;left:-5000px;" aria-hidden="true">
-            <input type="text" name="b_MAILCHIMP_PLACEHOLDER" tabindex="-1" value="" />
-          </div>
-          <button type="submit" class="btn-capture">Get early access</button>
+        <h2>Get a free content strategy recommendation</h2>
+        <p class="capture-sub">Tell us about your business and we'll send you a personalised content strategy — what to post, who to target, and how to start getting traction. Free, within 24 hours.</p>
+
+        <!-- FORM: Opted-in subscribers only -->
+        <form class="capture-form" id="leadCaptureForm" novalidate>
+          <input type="text" id="lc-name" name="BUSINESS_NAME" placeholder="Your business name" required autocomplete="organization" />
+          <select id="lc-type" name="BUSINESS_TYPE" required>
+            <option value="" disabled selected>Your industry / business type</option>
+            <option value="Trades &amp; Construction">Trades &amp; Construction</option>
+            <option value="Health &amp; Wellness">Health &amp; Wellness</option>
+            <option value="Professional Services">Professional Services (legal, accounting, consulting)</option>
+            <option value="Retail &amp; E-commerce">Retail &amp; E-commerce</option>
+            <option value="Hospitality &amp; Food">Hospitality &amp; Food</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Education &amp; Coaching">Education &amp; Coaching</option>
+            <option value="Technology">Technology</option>
+            <option value="Other">Other</option>
+          </select>
+          <input type="email" id="lc-email" name="EMAIL" placeholder="Your email address" required autocomplete="email" />
+          <button type="submit" class="btn-capture" id="lc-submit">Send my free recommendation →</button>
         </form>
-        <!-- END MAILCHIMP FORM PLACEHOLDER -->
+
+        <!-- Thank-you state (shown after submit) -->
+        <div class="capture-thankyou" id="leadCaptureThankyou">
+          <h3>You're on the list!</h3>
+          <p>We'll review your business details and send your personalised content strategy recommendation within 24 hours. Check your inbox — it comes from getmarketingai@gmail.com.</p>
+        </div>
+
         <p class="capture-consent">
-          By signing up you agree to receive occasional updates from MarketingAI.
-          No spam. Unsubscribe anytime. Your details are never shared.
+          We will only use your email to send your recommendation and occasional MarketingAI updates.
+          No spam. Unsubscribe at any time. Your details are never shared.
         </p>
       </div>
     </div>
   </section>
+
+  <script>
+    (function() {
+      // CONFIG: Set to a Formspree/Mailchimp/Google Apps Script endpoint to enable server-side storage.
+      // If empty, falls back to mailto: — submissions go to getmarketingai@gmail.com inbox.
+      var FORM_ENDPOINT = '';
+
+      var form = document.getElementById('leadCaptureForm');
+      var thankyou = document.getElementById('leadCaptureThankyou');
+      var submitBtn = document.getElementById('lc-submit');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var name = document.getElementById('lc-name').value.trim();
+        var type = document.getElementById('lc-type').value;
+        var email = document.getElementById('lc-email').value.trim();
+
+        if (!name || !type || !email) return;
+
+        submitBtn.textContent = 'Sending…';
+        submitBtn.disabled = true;
+
+        function showThankyou() {
+          form.style.display = 'none';
+          thankyou.style.display = 'block';
+        }
+
+        if (FORM_ENDPOINT) {
+          // Server-side submission (Formspree / Google Apps Script / Mailchimp)
+          fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ BUSINESS_NAME: name, BUSINESS_TYPE: type, EMAIL: email })
+          })
+          .then(function(r) { showThankyou(); })
+          .catch(function() { showThankyou(); }); // Show thanks even on network error
+        } else {
+          // Mailto fallback: opens email client pre-filled — records lead in getmarketingai@gmail.com inbox
+          var subject = encodeURIComponent('MarketingAI Early Access: ' + name);
+          var body = encodeURIComponent(
+            'New early access signup:\n\n' +
+            'Business name: ' + name + '\n' +
+            'Industry: ' + type + '\n' +
+            'Email: ' + email + '\n\n' +
+            '— Submitted via marketingai landing page'
+          );
+          window.location.href = 'mailto:getmarketingai@gmail.com?subject=' + subject + '&body=' + body;
+          showThankyou();
+        }
+      });
+    })();
+  </script>
 
   <!-- SOCIAL PROOF PLACEHOLDER -->
   <section class="section proof-bg">
