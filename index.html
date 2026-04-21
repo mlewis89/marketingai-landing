@@ -425,9 +425,9 @@
 
   <script>
     (function() {
-      // CONFIG: Set to a Formspree/Mailchimp/Google Apps Script endpoint to enable server-side storage.
-      // If empty, falls back to mailto: — submissions go to getmarketingai@gmail.com inbox.
-      var FORM_ENDPOINT = '';
+      // MailerLite subscribe endpoint — account 2282416, form 185339817098216933
+      // Set up via NMA-141: https://preview.mailerlite.io/forms/2282416/185339817098216933/share
+      var MAILERLITE_ENDPOINT = 'https://assets.mailerlite.com/jsonp/2282416/forms/185339817098216933/subscribe';
 
       var form = document.getElementById('leadCaptureForm');
       var thankyou = document.getElementById('leadCaptureThankyou');
@@ -450,28 +450,32 @@
           thankyou.style.display = 'block';
         }
 
-        if (FORM_ENDPOINT) {
-          // Server-side submission (Formspree / Google Apps Script / Mailchimp)
-          fetch(FORM_ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify({ BUSINESS_NAME: name, BUSINESS_TYPE: type, EMAIL: email })
-          })
-          .then(function(r) { showThankyou(); })
-          .catch(function() { showThankyou(); }); // Show thanks even on network error
-        } else {
-          // Mailto fallback: opens email client pre-filled — records lead in getmarketingai@gmail.com inbox
+        // Submit to MailerLite — OPTED-IN subscribers only (Australian Spam Act 2003)
+        // Fields: email, name (business name + industry in notes field)
+        var params = new URLSearchParams();
+        params.append('fields[email]', email);
+        params.append('fields[name]', name);
+        params.append('fields[last_name]', type); // industry stored in last_name field
+        params.append('ml-submit', '1');
+        params.append('anticsrf', 'true');
+
+        fetch(MAILERLITE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString()
+        })
+        .then(function() { showThankyou(); })
+        .catch(function() {
+          // Fallback to mailto on network error — ensures lead is never lost
           var subject = encodeURIComponent('MarketingAI Early Access: ' + name);
           var body = encodeURIComponent(
-            'New early access signup:\n\n' +
-            'Business name: ' + name + '\n' +
-            'Industry: ' + type + '\n' +
-            'Email: ' + email + '\n\n' +
-            '— Submitted via marketingai landing page'
+            'New early access signup:\n\nBusiness name: ' + name +
+            '\nIndustry: ' + type + '\nEmail: ' + email +
+            '\n\n— Submitted via marketingai landing page (MailerLite fallback)'
           );
           window.location.href = 'mailto:getmarketingai@gmail.com?subject=' + subject + '&body=' + body;
           showThankyou();
-        }
+        });
       });
     })();
   </script>
