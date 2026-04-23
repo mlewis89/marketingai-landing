@@ -450,8 +450,8 @@
         submitBtn.disabled = true;
 
         function showThankyou() {
-          form.style.display = 'none';
-          thankyou.style.display = 'block';
+          var redirectUrl = 'https://marketingai-checklist.vercel.app/?email=' + encodeURIComponent(email) + '&name=' + encodeURIComponent(name);
+          window.location.href = redirectUrl;
         }
 
         // Submit to MailerLite — OPTED-IN subscribers only (Australian Spam Act 2003)
@@ -517,3 +517,5 @@
 
 </body>
 </html>
+
+
