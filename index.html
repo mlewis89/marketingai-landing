@@ -1,9 +1,16 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MarketingAI — Automated marketing for Australian small businesses</title>
+<title>MarketingAI — Automated marketing for small businesses</title>
+  <!-- Hreflang: regional SEO signals -->
+  <link rel="alternate" hreflang="en-AU" href="https://marketing-ai-psi-nine.vercel.app/?region=au" />
+  <link rel="alternate" hreflang="en-GB" href="https://marketing-ai-psi-nine.vercel.app/?region=uk" />
+  <link rel="alternate" hreflang="en-NZ" href="https://marketing-ai-psi-nine.vercel.app/?region=nz" />
+  <link rel="alternate" hreflang="en-US" href="https://marketing-ai-psi-nine.vercel.app/?region=us" />
+  <link rel="alternate" hreflang="en-CA" href="https://marketing-ai-psi-nine.vercel.app/?region=ca" />
+  <link rel="alternate" hreflang="x-default" href="https://marketing-ai-psi-nine.vercel.app/" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q8MGZ47BC"></script>
   <script>
@@ -269,22 +276,69 @@
       .offer-box { padding: 28px 20px; }
       .price-tag { font-size: 2.5rem; }
     }
-  </style>
+</style>
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "MarketingAI",
+        "url": "https://marketing-ai-psi-nine.vercel.app",
+        "description": "Automated marketing system for small businesses",
+        "logo": "https://marketing-ai-psi-nine.vercel.app/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "getmarketingai@gmail.com",
+          "contactType": "customer service"
+        },
+        "areaServed": ["AU", "GB", "NZ", "US", "CA"]
+      },
+      {
+        "@type": "Service",
+        "name": "MarketingAI Setup",
+        "description": "Complete automated marketing system setup for small businesses. Includes AI content engine, outbound lead sequence, and email nurture sequence.",
+        "provider": {
+          "@type": "Organization",
+          "name": "MarketingAI"
+        },
+        "offers": [
+          { "@type": "Offer", "price": "149", "priceCurrency": "AUD", "eligibleRegion": "AU", "availability": "https://schema.org/InStock" },
+          { "@type": "Offer", "price": "99", "priceCurrency": "GBP", "eligibleRegion": "GB", "availability": "https://schema.org/InStock" },
+          { "@type": "Offer", "price": "199", "priceCurrency": "NZD", "eligibleRegion": "NZ", "availability": "https://schema.org/InStock" },
+          { "@type": "Offer", "price": "99", "priceCurrency": "USD", "eligibleRegion": "US", "availability": "https://schema.org/InStock" },
+          { "@type": "Offer", "price": "129", "priceCurrency": "CAD", "eligibleRegion": "CA", "availability": "https://schema.org/InStock" }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "name": "MarketingAI",
+        "url": "https://marketing-ai-psi-nine.vercel.app",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://marketing-ai-psi-nine.vercel.app/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
   <!-- NAV -->
   <nav>
     <a class="logo" href="#">MarketingAI</a>
-    <span class="nav-badge">Australia</span>
+    <span class="nav-badge" id="region-badge">Loading…</span>
   </nav>
 
   <!-- HERO -->
   <div class="hero">
-    <p class="eyebrow">Automated marketing for Australian businesses</p>
+    <p class="eyebrow" id="hero-eyebrow">Automated marketing for small businesses</p>
     <h1>Stop losing customers to businesses that show up. You don't.</h1>
     <p class="subheadline">
-      Most Australian small businesses have a great product and a forgettable online presence.
+      Most small businesses have a great product and a forgettable online presence.
       MarketingAI sets up an automated system that finds, attracts, and nurtures your customers —
       without you managing it day to day.
     </p>
@@ -292,7 +346,7 @@
       <a href="#early-access" class="btn-primary">
         Download the free checklist
       </a>
-      <a href="https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00" class="btn-secondary" target="_blank" rel="noopener">Get started — $149 AUD</a>
+      <a href="https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00" class="btn-secondary" id="hero-cta-btn" target="_blank" rel="noopener">Get started — <span id="hero-price">$149 AUD</span></a>
     </div>
     <p class="cta-note">Free personalised recommendation — no credit card. Or pay once and get everything set up.</p>
   </div>
@@ -301,7 +355,7 @@
   <section class="section problems-bg">
     <div class="section-inner">
       <p class="section-label">The problem</p>
-      <h2 class="section-title">Why most AU small business marketing doesn't work</h2>
+      <h2 class="section-title">Why most small business marketing doesn't work</h2>
       <div class="problem-list">
         <div class="problem-item">
           <h3>You're invisible where your customers are looking</h3>
@@ -311,7 +365,7 @@
           </p>
         </div>
         <div class="problem-item">
-          <h3>Agencies charge $2,000–$5,000/month and can't explain what you got</h3>
+          <h3>Agencies charge thousands per month and can't explain what you got</h3>
           <p>
             Monthly retainers with vague deliverables. You pay for "strategy", get some social posts,
             and wonder if any of it is actually bringing in customers.
@@ -369,7 +423,7 @@
     <div class="section-inner">
       <div class="offer-box">
         <p style="font-size:0.75rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6bb3ff; margin-bottom:14px;">One-off setup fee</p>
-        <div class="price-tag">$149 <span style="font-size:1.4rem; font-weight:600; letter-spacing:0px;">AUD</span></div>
+        <div class="price-tag" id="offer-price-tag">$149 <span style="font-size:1.4rem; font-weight:600; letter-spacing:0px;" id="offer-currency">AUD</span></div>
         <p class="price-sub">One-time. No ongoing fees. No lock-in.</p>
         <ul class="include-list">
           <li>All three systems configured for your business: AI Content Engine, Outbound Lead Sequence, and Email Nurture Sequence</li>
@@ -383,9 +437,9 @@
         </p>
         <div class="offer-cta-group">
           <a href="https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00" class="btn-primary" id="buy-now-btn" target="_blank" rel="noopener">
-            Get started — $149 AUD
+            Get started — <span id="offer-cta-price">$149 AUD</span>
           </a>
-          <a href="https://calendly.com/getmarketingai/30min" class="btn-secondary" target="_blank" rel="noopener">
+          <a href="https://calendly.com/getmarketingai/30min" class="btn-secondary" id="calendly-btn" target="_blank" rel="noopener">
             Book a free call first
           </a>
         </div>
@@ -445,7 +499,7 @@
     </div>
   </section>
 
-  <script>
+<script>
     (function() {
       // MailerLite subscribe endpoint — account 2282416, form 185339817098216933
       // Set up via NMA-141: https://preview.mailerlite.io/forms/2282416/185339817098216933/share
@@ -473,18 +527,17 @@
         }
 
         // Submit to MailerLite — OPTED-IN subscribers only (Australian Spam Act 2003)
-        // Fields: email, name (business name + industry in notes field)
-        var params = new URLSearchParams();
-        params.append('fields[email]', email);
-        params.append('fields[name]', name);
-        params.append('fields[last_name]', type); // industry stored in last_name field
-        params.append('ml-submit', '1');
-        params.append('anticsrf', 'true');
+        // Using FormData for proper multipart encoding
+        var formData = new FormData();
+        formData.append('fields[email]', email);
+        formData.append('fields[name]', name);
+        formData.append('fields[last_name]', type);
+        formData.append('ml-submit', '1');
+        formData.append('anticsrf', 'true');
 
         fetch(MAILERLITE_ENDPOINT, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: params.toString()
+          body: formData
         })
         .then(function() { showThankyou(); })
         .catch(function() {
@@ -514,8 +567,8 @@
           If you're in early, you get our full attention.
         </p>
         <div style="margin-top:32px;">
-          <a href="https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00" class="btn-primary" target="_blank" rel="noopener">
-            Get started — $149 AUD
+          <a href="https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00" class="btn-primary" id="proof-cta-btn" target="_blank" rel="noopener">
+            Get started — <span id="proof-cta-price">$149 AUD</span>
           </a>
         </div>
       </div>
@@ -528,10 +581,93 @@
       <strong>Important:</strong> Outcomes described on this page are illustrative only.
       MarketingAI does not guarantee specific marketing results, revenue outcomes, or timelines.
       Marketing system performance depends on your industry, offer, and audience.
-      All work is performed by a sole trader operating under Australian Consumer Law.
+      All work is performed by a sole trader. Prices displayed in local currency equivalents; payments processed in AUD via Stripe unless otherwise stated.
     </p>
-    <p style="margin-top:6px;">© 2026 MarketingAI · Australia</p>
+    <p style="margin-top:6px;" id="footer-region">© 2026 MarketingAI</p>
   </footer>
+
+  <!-- REGION DETECTION: geolocation-based pricing & copy for UK, NZ, US, CA, AU -->
+  <script>
+  (function() {
+    var REGIONS = {
+      au: { label: 'Australia', badge: 'Australia', price: '$149', currency: 'AUD', priceLabel: '$149 AUD', eyebrow: 'Automated marketing for Australian businesses', calendly: 'https://calendly.com/getmarketingai/30min', footer: '© 2026 MarketingAI · Australia' },
+      gb: { label: 'United Kingdom', badge: 'United Kingdom', price: '£99', currency: 'GBP', priceLabel: '£99 GBP', eyebrow: 'Automated marketing for UK small businesses', calendly: 'https://calendly.com/getmarketingai/30min', footer: '© 2026 MarketingAI · United Kingdom' },
+      nz: { label: 'New Zealand', badge: 'New Zealand', price: '$199', currency: 'NZD', priceLabel: '$199 NZD', eyebrow: 'Automated marketing for NZ businesses', calendly: 'https://calendly.com/getmarketingai/30min', footer: '© 2026 MarketingAI · New Zealand' },
+      us: { label: 'United States', badge: 'United States', price: '$99', currency: 'USD', priceLabel: '$99 USD', eyebrow: 'Automated marketing for US small businesses', calendly: 'https://calendly.com/getmarketingai/30min', footer: '© 2026 MarketingAI' },
+      ca: { label: 'Canada', badge: 'Canada', price: '$129', currency: 'CAD', priceLabel: '$129 CAD', eyebrow: 'Automated marketing for Canadian businesses', calendly: 'https://calendly.com/getmarketingai/30min', footer: '© 2026 MarketingAI · Canada' }
+    };
+
+    function detectRegion() {
+      // 1. URL param override (for hreflang / direct links)
+      var params = new URLSearchParams(window.location.search);
+      var param = params.get('region');
+      if (param && REGIONS[param]) return param;
+
+      // 2. Timezone detection
+      try {
+        var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        if (/^Australia\//.test(tz)) return 'au';
+        if (/^Pacific\/Auckland/.test(tz)) return 'nz';
+        if (/^Europe\/London/.test(tz)) return 'gb';
+        if (/^America\/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|Regina|St_Johns|Moncton|Whitehorse|Iqaluit)/.test(tz)) return 'ca';
+        if (/^America\//.test(tz)) return 'us';
+      } catch(e) {}
+
+      // 3. Browser language fallback
+      var lang = (navigator.language || '').toLowerCase();
+      if (lang === 'en-gb' || lang === 'en-gb') return 'gb';
+      if (lang === 'en-nz') return 'nz';
+      if (lang === 'en-ca') return 'ca';
+      if (lang === 'en-us') return 'us';
+
+      return 'au'; // default
+    }
+
+    function applyRegion(r) {
+      var c = REGIONS[r];
+      if (!c) return;
+
+      // Nav badge
+      var badge = document.getElementById('region-badge');
+      if (badge) badge.textContent = c.badge;
+
+      // Hero eyebrow
+      var eyebrow = document.getElementById('hero-eyebrow');
+      if (eyebrow) eyebrow.textContent = c.eyebrow;
+
+      // Hero CTA price spans
+      ['hero-price', 'offer-cta-price', 'proof-cta-price'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = c.priceLabel;
+      });
+
+      // Offer box price
+      var offerTag = document.getElementById('offer-price-tag');
+      if (offerTag) {
+        offerTag.childNodes[0].textContent = c.price + ' ';
+        var cur = document.getElementById('offer-currency');
+        if (cur) cur.textContent = c.currency;
+      }
+
+      // Calendly link — auto-detect timezone via embed param
+      var calBtn = document.getElementById('calendly-btn');
+      if (calBtn) {
+        calBtn.href = c.calendly + '?embed_type=popup';
+      }
+
+      // Footer region
+      var footer = document.getElementById('footer-region');
+      if (footer) footer.textContent = c.footer;
+
+      // Page title & meta for SEO (dynamic, not indexed — just UX)
+      if (r !== 'au') {
+        document.title = 'MarketingAI — Automated marketing for ' + c.label + ' small businesses';
+      }
+    }
+
+    applyRegion(detectRegion());
+  })();
+  </script>
 
 </body>
 </html>
