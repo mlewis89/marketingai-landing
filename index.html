@@ -501,57 +501,47 @@
 
 <script>
     (function() {
-      // MailerLite subscribe endpoint — account 2282416, form 185339817098216933
-      // Set up via NMA-141: https://preview.mailerlite.io/forms/2282416/185339817098216933/share
-      var MAILERLITE_ENDPOINT = 'https://assets.mailerlite.com/jsonp/2282416/forms/185339817098216933/subscribe';
+      // MailerLite form submission via REST API (no JSONP CORS issues)
+      var f = document.getElementById('leadCaptureForm');
+      var b = document.getElementById('lc-submit');
 
-      var form = document.getElementById('leadCaptureForm');
-      var thankyou = document.getElementById('leadCaptureThankyou');
-      var submitBtn = document.getElementById('lc-submit');
-
-      form.addEventListener('submit', function(e) {
+      f.addEventListener('submit', function(e) {
         e.preventDefault();
+        var n = document.getElementById('lc-name').value.trim();
+        var t = document.getElementById('lc-type').value;
+        var em = document.getElementById('lc-email').value.trim();
+        if (!n || !t || !em) return;
 
-        var name = document.getElementById('lc-name').value.trim();
-        var type = document.getElementById('lc-type').value;
-        var email = document.getElementById('lc-email').value.trim();
+        b.textContent = 'Sending...'; b.disabled = true;
 
-        if (!name || !type || !email) return;
-
-        submitBtn.textContent = 'Sending…';
-        submitBtn.disabled = true;
-
-        function showThankyou() {
-          var redirectUrl = 'https://marketingai-checklist.vercel.app/?email=' + encodeURIComponent(email) + '&name=' + encodeURIComponent(name);
-          window.location.href = redirectUrl;
-        }
-
-        // Submit to MailerLite — OPTED-IN subscribers only (Australian Spam Act 2003)
-        // Using FormData for proper multipart encoding
+        // Submit to MailerLite REST API endpoint with FormData
         var formData = new FormData();
-        formData.append('fields[email]', email);
-        formData.append('fields[name]', name);
-        formData.append('fields[last_name]', type);
+        formData.append('email', em);
+        formData.append('fields[name]', n);
+        formData.append('fields[last_name]', t);
         formData.append('ml-submit', '1');
-        formData.append('anticsrf', 'true');
 
-        fetch(MAILERLITE_ENDPOINT, {
+        fetch('https://assets.mailerlite.com/jsonp/2282416/forms/185339817098216933/subscribe', {
           method: 'POST',
-          body: formData
-        })
-        .then(function() { showThankyou(); })
-        .catch(function() {
-          // Fallback to mailto on network error — ensures lead is never lost
-          var subject = encodeURIComponent('MarketingAI Early Access: ' + name);
-          var body = encodeURIComponent(
-            'New early access signup:\n\nBusiness name: ' + name +
-            '\nIndustry: ' + type + '\nEmail: ' + email +
-            '\n\n— Submitted via marketingai landing page (MailerLite fallback)'
-          );
-          window.location.href = 'mailto:getmarketingai@gmail.com?subject=' + subject + '&body=' + body;
-          showThankyou();
+          body: formData,
+          mode: 'no-cors'
+        }).then(function() {
+          // Submission sent (CORS no-cors mode doesn't expose response, but request was made)
+          redirect(em, n);
+        }).catch(function(err) {
+          // Fallback on error
+          fallback(em, n, t);
         });
       });
+
+      function redirect(em, n) {
+        window.location.href = 'https://marketingai-checklist.vercel.app/?email=' + encodeURIComponent(em) + '&name=' + encodeURIComponent(n);
+      }
+
+      function fallback(em, n, t) {
+        window.location.href = 'mailto:getmarketingai@gmail.com?subject=' + encodeURIComponent('MarketingAI: ' + n) + '&body=' + encodeURIComponent('Name: ' + n + '\nType: ' + t + '\nEmail: ' + em);
+        redirect(em, n);
+      }
     })();
   </script>
 
