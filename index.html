@@ -501,9 +501,9 @@
 
 <script>
     (function() {
-      // MailerLite form submission via REST API (no JSONP CORS issues)
       var f = document.getElementById('leadCaptureForm');
       var b = document.getElementById('lc-submit');
+      var cbCounter = 0;
 
       f.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -513,34 +513,51 @@
         if (!n || !t || !em) return;
 
         b.textContent = 'Sending...'; b.disabled = true;
-
-        // Submit to MailerLite REST API endpoint with FormData
-        var formData = new FormData();
-        formData.append('email', em);
-        formData.append('fields[name]', n);
-        formData.append('fields[last_name]', t);
-        formData.append('ml-submit', '1');
-
-        fetch('https://assets.mailerlite.com/jsonp/2282416/forms/185339817098216933/subscribe', {
-          method: 'POST',
-          body: formData,
-          mode: 'no-cors'
-        }).then(function() {
-          // Submission sent (CORS no-cors mode doesn't expose response, but request was made)
-          redirect(em, n);
-        }).catch(function(err) {
-          // Fallback on error
-          fallback(em, n, t);
-        });
+        subscribeJsonp(em, n, t);
       });
+
+      function subscribeJsonp(em, name, type) {
+        var cb = 'mlcb_' + (++cbCounter) + '_' + Date.now();
+        var url = 'https://assets.mailerlite.com/jsonp/2282416/forms/185339817098216933/subscribe?callback=' + cb + '&email=' + encodeURIComponent(em) + '&fields[name]=' + encodeURIComponent(name) + '&fields[last_name]=' + encodeURIComponent(type) + '&ml-submit=1';
+
+        window[cb] = function(resp) {
+          cleanup(cb);
+          if (resp && resp.success) {
+            redirect(em, name);
+          } else {
+            fallback(em, name, type);
+          }
+        };
+
+        var script = document.createElement('script');
+        script.src = url;
+        script.onerror = function() {
+          cleanup(cb);
+          fallback(em, name, type);
+        };
+        document.head.appendChild(script);
+
+        setTimeout(function() {
+          cleanup(cb);
+          fallback(em, name, type);
+        }, 8000);
+      }
+
+      function cleanup(cb) {
+        if (window[cb]) delete window[cb];
+        var scripts = document.querySelectorAll('script[src*="assets.mailerlite.com"]');
+        scripts.forEach(function(s) { if (s.parentNode) s.parentNode.removeChild(s); });
+      }
 
       function redirect(em, n) {
         window.location.href = 'https://marketingai-checklist.vercel.app/?email=' + encodeURIComponent(em) + '&name=' + encodeURIComponent(n);
       }
 
       function fallback(em, n, t) {
-        window.location.href = 'mailto:getmarketingai@gmail.com?subject=' + encodeURIComponent('MarketingAI: ' + n) + '&body=' + encodeURIComponent('Name: ' + n + '\nType: ' + t + '\nEmail: ' + em);
-        redirect(em, n);
+        var subject = encodeURIComponent('MarketingAI: ' + n);
+        var body = encodeURIComponent('Name: ' + n + '\nType: ' + t + '\nEmail: ' + em);
+        window.location.href = 'mailto:getmarketingai@gmail.com?subject=' + subject + '&body=' + body;
+        setTimeout(function() { redirect(em, n); }, 1500);
       }
     })();
   </script>
